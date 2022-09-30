@@ -14,37 +14,34 @@ public class SavingsCalculator {
 
     private float sumOfCredits() {
         float sum = 0.0f;
-
-        for (int i = 0; i < credits.length; i++) {
-            sum += credits[i];
+        for(float credit: credits) {
+            sum += credit;
         }
-        return(sum);
+        return sum;
     }
 
     private float sumOfDebits() {
         float sum = 0.0f;
-
-        for (int i = 0; i < debits.length; i++) {
-            sum += debits[i];
+        for(float debit: debits) {
+            sum += debit;
         }
-        return(sum);
+        return sum;
     }
 
     private static int remainingDaysInMonth(LocalDate date) {
-
         YearMonth yearMonth = YearMonth.of(date.getYear(), date.getMonth());
         int totalDaysInMonth = yearMonth.lengthOfMonth();
         int remainingDays = totalDaysInMonth - date.getDayOfMonth();
-        return(remainingDays);
+        return remainingDays;
     }
 
     public float calculate() {
-        return(sumOfCredits() - sumOfDebits());
+        return sumOfCredits() - sumOfDebits();
     }
 
     public static void main(String[] args) {
-        String[] creditsAsString = args[0].split(",");
-        String[] debitsAsString = args[1].split(",");
+        final String[] creditsAsString = args[0].split(",");
+        final String[] debitsAsString = args[1].split(",");
 
         final float[] credits = new float[creditsAsString.length];
         final float[] debits = new float[debitsAsString.length];
@@ -57,14 +54,8 @@ public class SavingsCalculator {
             debits[i] = Float.parseFloat(debitsAsString[i]);
         }
 
-        SavingsCalculator obj = new SavingsCalculator(credits, debits);
-        SavingsCalculator calculator = obj;
-
+        final SavingsCalculator calculator = new SavingsCalculator(credits, debits);
         float netSavings = calculator.calculate();
-
         System.out.println("Net Savings = " + netSavings + ", remaining days in month = " + remainingDaysInMonth(LocalDate.now()));
-
-
     }
-
 }
