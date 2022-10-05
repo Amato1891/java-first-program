@@ -1,10 +1,7 @@
 package com.h2;
-
-import com.h2.Utilities;
 import java.text.DecimalFormat;
 
 public class MortgageCalculator {
-
     private long loanAmount;
     private int termInYears;
     private float annualRate;
@@ -37,8 +34,7 @@ public class MortgageCalculator {
     public String toString() {
         DecimalFormat df = new DecimalFormat("####0.00");
 
-
-        return "monthlyPayment: " + df.format(monthlyPayment);
+        return Utilities.ANSI_GREEN + "monthlyPayment: " + df.format(monthlyPayment) + Utilities.ANSI_RESET;
     }
 
     public static void main(String[] args) {
